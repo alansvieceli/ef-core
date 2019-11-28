@@ -1,0 +1,14 @@
+https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-new?tabs=netcore22
+
+dotnet new console
+dotnet run
+dotnet watch run         > é restartado quando mexe no projeto
+dotnet build
+dotnet restore           > restaurar dependencias do projeto
+dotnet add package Microsoft.AspNetCore.App
+
+dotnet new sln
+dotnet new mvc -o Mvc
+dotnet sln add ./Mvc/Mvc.csproj
+dotnet new classlib -o Dominio
+dotnet sln add ./Dominio/Dominio.csproj
