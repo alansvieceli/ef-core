@@ -43,6 +43,7 @@ dotnet add reference ..\Dominio\Dominio.csproj //no Dados
 
 *
 dotnet add reference ..\Dados\Dados.csproj  //no MVC
+dotnet add reference ..\Dominio\Dominio.csproj //no MVC
 
 ## Migration [Microsoft.EntityFrameworkCore.Tools] (Dados)  ##
 
