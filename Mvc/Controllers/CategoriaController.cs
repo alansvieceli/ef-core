@@ -31,7 +31,29 @@ namespace Mvc.Controllers
     [HttpPost]
     public async Task<IActionResult> Salvar(Categoria categoria) //assincrono (systema nao vai travar..vai ir atendendo outras requisições)
     {
-      _contexto.Categorias.Add(categoria);
+      if (categoria.Id == 0)
+        _contexto.Categorias.Add(categoria);
+      else {
+        var catNew = _contexto.Categorias.First(c => c.Id == categoria.Id);
+        catNew.Nome = categoria.Nome;
+      }
+
+      await _contexto.SaveChangesAsync(); //commit; await espera terminar
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public IActionResult Editar(int id)
+    {
+      var categoria = _contexto.Categorias.First(c => c.Id == id);
+      return View("Salvar", categoria);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Excluir(int id)
+    {
+      var categoria = _contexto.Categorias.First(c => c.Id == id);
+      _contexto.Categorias.Remove(categoria);
       await _contexto.SaveChangesAsync(); //commit; await espera terminar
       return RedirectToAction("Index");
     }
