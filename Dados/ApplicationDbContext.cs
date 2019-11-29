@@ -10,6 +10,7 @@ namespace Dados
     }
     //mapeamento de classes para o Banco de dados
     public DbSet<Categoria> Categorias { get; set; }
+    public DbSet<Produto> Produtos { get; set; }
   }
 }
 
