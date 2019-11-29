@@ -8,8 +8,9 @@ namespace Dados
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
-
-   //mapeamento de classes para o Banco de dados
-    public DbSet<Categoria> Categorias { get; set; } 
+    //mapeamento de classes para o Banco de dados
+    public DbSet<Categoria> Categorias { get; set; }
   }
 }
+
+

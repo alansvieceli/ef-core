@@ -22,18 +22,30 @@ dotnet build
 
 sudo docker pull mcr.microsoft.com/mssql/server:2017-latest
 
-docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2017-latest
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" -e "MSSQL_PID=Developer" --cap-add SYS_PTRACE -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2017-latest
 
 docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P <YourStrong@Passw0rd>
 
 SQL Server management studio
 
-## Dependencias do EF, dentro de Dados, somente ##
+## Dependencias do EF ## (Dados)
 
 dotnet add package Microsoft.EntityFrameworkCore --version 2.1.0
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 2.1.0
 dotnet add package Microsoft.EntityFrameworkCore.Tools --version 2.1.0
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 2.1.0
 
-dotnet add reference ..\Dominio\Dominio.csproj
+dotnet add package Microsoft.Extensions.Configuration.FileExtensions
+dotnet add package Microsoft.Extensions.Configuration.Json
 
-dotnet add reference ..\Dados\Dados.csproj
+*
+dotnet add reference ..\Dominio\Dominio.csproj //no Dados
+
+*
+dotnet add reference ..\Dados\Dados.csproj  //no MVC
+
+## Migration [Microsoft.EntityFrameworkCore.Tools] (Dados)  ##
+
+dotnet ef --startup-project ..\Mvc\Mvc.csproj migrations add AdicionandoCategoria
+
+dotnet ef --startup-project ..\Mvc\Mvc.csproj database update
