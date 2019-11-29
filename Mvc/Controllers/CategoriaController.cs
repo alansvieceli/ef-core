@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Dados;
 using Dominio.Entidades;
@@ -15,6 +16,13 @@ namespace Mvc.Controllers
     }   
 
     [HttpGet]
+    public IActionResult Index()
+    {
+      var categorias = _contexto.Categorias.ToList();
+      return View(categorias);
+    }
+
+    [HttpGet]
     public IActionResult Salvar()
     {      
       return View();
@@ -25,7 +33,7 @@ namespace Mvc.Controllers
     {
       _contexto.Categorias.Add(categoria);
       await _contexto.SaveChangesAsync(); //commit; await espera terminar
-      return View();
+      return RedirectToAction("Index");
     }
 
   }
