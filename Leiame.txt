@@ -12,3 +12,22 @@ dotnet new mvc -o Mvc
 dotnet sln add ./Mvc/Mvc.csproj
 dotnet new classlib -o Dominio
 dotnet sln add ./Dominio/Dominio.csproj
+dotnet new classlib -o Dados
+dotnet sln add ./Dados/Dados.csproj
+
+dotnet build
+
+
+
+
+sudo docker pull mcr.microsoft.com/mssql/server:2017-latest
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2017-latest
+
+docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P <YourStrong@Passw0rd>
+
+ou
+
+https://hub.docker.com/r/microsoft/mssql-server-linux/
+
+SQL Server management studio
