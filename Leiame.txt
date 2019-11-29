@@ -35,3 +35,5 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 2.1.0
 dotnet add package Microsoft.EntityFrameworkCore.Tools --version 2.1.0
 
 dotnet add reference ..\Dominio\Dominio.csproj
+
+dotnet add reference ..\Dados\Dados.csproj
