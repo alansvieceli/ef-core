@@ -26,8 +26,12 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" -p 1433:143
 
 docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P <YourStrong@Passw0rd>
 
-ou
-
-https://hub.docker.com/r/microsoft/mssql-server-linux/
-
 SQL Server management studio
+
+## Dependencias do EF, dentro de Dados, somente ##
+
+dotnet add package Microsoft.EntityFrameworkCore --version 2.1.0
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 2.1.0
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 2.1.0
+
+dotnet add reference ..\Dominio\Dominio.csproj
