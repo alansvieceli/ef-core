@@ -20,7 +20,8 @@ namespace Mvc.Controllers
     [HttpGet]
     public IActionResult Index()
     {
-      var produtos = _contexto.Produtos.Include(p => p.Categoria).ToList();
+      //var produtos = _contexto.Produtos.Include(p => p.Categoria).ToList();
+      var produtos = _contexto.Produtos.ToList();
       return View(produtos);
     }
 
