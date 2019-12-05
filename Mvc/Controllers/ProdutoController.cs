@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dados;
@@ -21,8 +22,13 @@ namespace Mvc.Controllers
     public IActionResult Index()
     {
       //var produtos = _contexto.Produtos.Include(p => p.Categoria).ToList();
-      var produtos = _contexto.Produtos.ToList();
-      return View(produtos);
+      //var produtos = _contexto.Produtos.ToList();
+      var queryProdutos = _contexto.Produtos.Where(p => p.Ativo && p.Categoria.PermiteEstoque);
+
+      if (!queryProdutos.Any()){
+        return View(new List<Produto>());
+      }
+      return View(queryProdutos.ToList());
     }
 
     [HttpGet]
@@ -46,7 +52,7 @@ namespace Mvc.Controllers
         var prodNew = _contexto.Produtos.First(c => c.Id == produto.Id);
         prodNew.Nome = produto.Nome;
         prodNew.CategoriaId = produto.CategoriaId;
-        //prodNew.Categoria = produto.Categoria;
+        prodNew.Ativo = produto.Ativo;
       }
 
       await _contexto.SaveChangesAsync(); //commit; await espera terminar

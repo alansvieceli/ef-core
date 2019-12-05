@@ -5,11 +5,19 @@
 <form class="form-horizontal" asp-action="Salvar" asp-controller="Categoria" method="POST">
   <input type="hidden" class="form-control" asp-for="Id" />
   <div class="form-group">
-    <label class="col-md-1 control-label" for="Nome">Nome: </label>  
+    <label class="col-md-3 control-label" for="Nome">Nome: </label>  
     <div class="col-md-2">
       <input type="text" class="form-control" asp-for="Nome" />
     </div>
   </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="PermiteEstoque">Permite Estoque: </label>  
+    <div class="col-md-2">
+      @Html.CheckBoxFor(m => m.PermiteEstoque)
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="col-md-2">
       <button class="btn btn-success">Salvar</button>

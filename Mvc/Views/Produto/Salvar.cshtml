@@ -11,8 +11,15 @@
     </div>
   </div>
 
+    <div class="form-group">
+    <label class="col-md-3 control-label" for="Ativo">Ativo: </label>  
+    <div class="col-md-2">
+      @Html.CheckBoxFor(m => m.Ativo)
+    </div>
+  </div>
+
   <div class="form-group">
-    <label class="col-md-1 control-label" for="Nome">Categoria: </label>  
+    <label class="col-md-3 control-label" for="Nome">Categoria: </label>  
     <div class="col-md-2">                                                                              
       <select class="form-control" asp-for="CategoriaId" asp-items='@(new SelectList(@ViewBag.Categorias, "Id", "Nome"))'></select>
     </div>

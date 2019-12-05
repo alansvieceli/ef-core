@@ -36,6 +36,7 @@ namespace Mvc.Controllers
       else {
         var catNew = _contexto.Categorias.First(c => c.Id == categoria.Id);
         catNew.Nome = categoria.Nome;
+        catNew.PermiteEstoque = categoria.PermiteEstoque;
       }
 
       await _contexto.SaveChangesAsync(); //commit; await espera terminar
