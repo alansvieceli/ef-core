@@ -51,3 +51,10 @@ dotnet add reference ..\Dominio\Dominio.csproj //no MVC
 dotnet ef --startup-project ..\Mvc\Mvc.csproj migrations add AdicionandoCategoria
 
 dotnet ef --startup-project ..\Mvc\Mvc.csproj database update
+
+
+## Voltar migrations
+
+dotnet ef --startup-project ..\Mvc\Mvc.csproj database update AdicionandoCategoria //ele volta até esse migration ..SÓ DO BANCO DE DADOS
+
+dotnet ef --startup-project ..\Mvc\Mvc.csproj migrations remove <Nome do migration q quer remover>
