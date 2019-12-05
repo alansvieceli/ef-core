@@ -43,10 +43,29 @@ namespace Mvc.Controllers
       if (produto.Id == 0)
         _contexto.Produtos.Add(produto);
       else {
-        var prodNew = _contexto.Categorias.First(c => c.Id == produto.Id);
-        produto.Nome = produto.Nome;
+        var prodNew = _contexto.Produtos.First(c => c.Id == produto.Id);
+        prodNew.Nome = produto.Nome;
+        prodNew.CategoriaId = produto.CategoriaId;
+        //prodNew.Categoria = produto.Categoria;
       }
 
+      await _contexto.SaveChangesAsync(); //commit; await espera terminar
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public IActionResult Editar(int id)
+    {
+      ViewBag.Categorias = _contexto.Categorias.ToList();
+      var produto = _contexto.Produtos.First(c => c.Id == id);
+      return View("Salvar", produto);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Excluir(int id)
+    {
+      var produto = _contexto.Produtos.First(c => c.Id == id);
+      _contexto.Produtos.Remove(produto);
       await _contexto.SaveChangesAsync(); //commit; await espera terminar
       return RedirectToAction("Index");
     }
